@@ -9,11 +9,6 @@ import java.io.File;
  */
 public interface WeChatHttpUpload {
 
-	/**
-	 * 获取微信通讯的URL键值
-	 * @return
-	 */
-	String getWeChatKey();
 	
 	/**
 	 * 获取构造文件名(不一定与上传文件名一致)
@@ -33,5 +28,5 @@ public interface WeChatHttpUpload {
 	 */
 	String getContent();
 	
-	File getFileObject();
+	File getFile();
 }

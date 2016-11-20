@@ -183,7 +183,7 @@ public class WeChatHttpDefault implements WeChatHttp {
 		}
 		
 		//设置文件流
-		//builder.addPart(upload.getFileName(),new InputStreamBody(upload.getFileObject().getInputStream(),upload.getFileObject().getFileName()));
+		//builder.addPart(upload.getFileName(),new InputStreamBody(upload.getFile().getInputStream(),upload.getFile().getFileName()));
 		
 		//生成HttpEntity实体
 		HttpEntity entity = builder.build();
