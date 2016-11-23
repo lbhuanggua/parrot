@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~  Copyright 2009-2016 Weibo, Inc.
+  ~
+  ~    Licensed under the Apache License, Version 2.0 (the "License");
+  ~    you may not use this file except in compliance with the License.
+  ~    You may obtain a copy of the License at
+  ~
+  ~        http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~    Unless required by applicable law or agreed to in writing, software
+  ~    distributed under the License is distributed on an "AS IS" BASIS,
+  ~    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~    See the License for the specific language governing permissions and
+  ~    limitations under the License.
+  -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:motan="http://api.weibo.com/schema/motan"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+       http://api.weibo.com/schema/motan http://api.weibo.com/schema/motan.xsd">
+    
+    
+    <!-- 注册中心配置 使用不同注册中心需要依赖对应的jar包。如果不使用注册中心，可以把check属性改为false，忽略注册失败。-->
+   	<!--  <motan:registry regProtocol="direct" address="localhost:8002" name="registry" /> -->
+    <!--<motan:registry regProtocol="consul" name="registry" address="127.0.0.1:8500"/>-->
+   	<!-- <motan:registry regProtocol="zookeeper" name="registry" address="127.0.0.1:2181" connectTimeout="2000"/> -->
+	<!-- <motan:registry regProtocol="direct" name="registry" port="8002" address="127.0.0.1"/> -->
+    <!-- 协议配置。为防止多个业务配置冲突，推荐使用id表示具体协议。-->
+    <!-- <motan:protocol id="parrotMotan" default="true" name="motan"
+                    maxServerConnection="8000" maxContentLength="1048576"
+                    maxWorkerThread="800" minWorkerThread="20"/>  -->
+
+    <!-- 通用配置，多个rpc服务使用相同的基础配置. group和module定义具体的服务池。export格式为“protocol id:提供服务的端口”-->
+    <!-- <motan:basicService id="parrotServiceBasicConfig" export="parrotMotan:8005"
+                        group="parrot-rpc" accessLog="false" shareChannel="true" module="parrot-rpc"
+                        application="parrot" registry="registry" connectTimeout="10000" /> -->
+
+    <!-- 具体rpc服务配置，声明实现的接口类。-->
+    <!-- <motan:service interface="com.lb.parrot.apiproxy.pay.api.WeChatPayOrderBean" ref="weChatPayOrderBean" basicService="parrotServiceBasicConfig"/>
+  	<motan:service interface="com.lb.parrot.apiproxy.pay.api.WeChatPayNotifyBean" ref="weChatPayNotifyBean" basicService="parrotServiceBasicConfig"/>
+  	<motan:service interface="com.lb.parrot.apiproxy.pay.api.WeChatPayRefundBean" ref="weChatPayRefundBean" basicService="parrotServiceBasicConfig"/>
+    <motan:service interface="com.lb.parrot.apiproxy.pay.api.WeChatRedPackBean" ref="weChatRedPackBean" basicService="parrotServiceBasicConfig"/>
+    <motan:service interface="com.lb.parrot.apiproxy.template.api.WeChatTemplateBean" ref="weChatTemplateBean" basicService="parrotServiceBasicConfig"/>
+    <motan:service interface="com.lb.parrot.apiproxy.user.api.WeChatUserBean" ref="weChatUserBean" basicService="parrotServiceBasicConfig"/>
+    <motan:service interface="com.lb.parrot.apiproxy.account.api.WeChatQrCodeBean" ref="weChatQrCodeBean" basicService="parrotServiceBasicConfig"/>
+  	<motan:service interface="com.lb.parrot.apiproxy.support.api.WeChatAccessTokenBean" ref="weChatAccessTokenBean" basicService="parrotServiceBasicConfig"/>
+ -->
+ 
+ 	<motan:service interface="com.lb.parrot.apiproxy.pay.api.WeChatPayOrderBean" ref="weChatPayOrderBean" export="9901"/>
+  	<motan:service interface="com.lb.parrot.apiproxy.pay.api.WeChatPayNotifyBean" ref="weChatPayNotifyBean" export="9902"/>
+  	<motan:service interface="com.lb.parrot.apiproxy.pay.api.WeChatPayRefundBean" ref="weChatPayRefundBean" export="9903"/>
+    <motan:service interface="com.lb.parrot.apiproxy.pay.api.WeChatRedPackBean" ref="weChatRedPackBean" export="9904"/>
+    <motan:service interface="com.lb.parrot.apiproxy.template.api.WeChatTemplateBean" ref="weChatTemplateBean" export="9905"/>
+    <motan:service interface="com.lb.parrot.apiproxy.user.api.WeChatUserBean" ref="weChatUserBean" export="9906"/>
+    <motan:service interface="com.lb.parrot.apiproxy.account.api.WeChatQrCodeBean" ref="weChatQrCodeBean" export="9907"/>
+  	<motan:service interface="com.lb.parrot.apiproxy.support.api.WeChatAccessTokenBean" ref="weChatAccessTokenBean" export="9908"/>
+ 
+ </beans>

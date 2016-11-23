@@ -47,7 +47,7 @@ public class WeChatRedPackBeanImpl implements WeChatRedPackBean{
 		context.setInput(message);
 		LOGGER.debug("发放普通红包>>>转换微信表单：{}", message.toString());
 		weChatConnector.send(toUrl, context);
-		LOGGER.debug("发放普通红包>>>接收微信反馈表单：{}", (String) context.getOutput());
+		LOGGER.debug("发放普通红包>>>接收微信反馈表单：{}", (String) context.getOutput().toString());
 		RedPackResult result = XmlUtil.toBean((String)context.getOutput(), RedPackResult.class);
 		if(result.getReturnCode().equals("FAIL")){
 			LOGGER.error("发放普通红包>>>出错：code:{},msg：{}", result.getReturnCode(), result.getReturnMsg());
@@ -74,7 +74,7 @@ public class WeChatRedPackBeanImpl implements WeChatRedPackBean{
 		context.setInput(message);
 		LOGGER.debug("发放裂变红包>>>转换微信表单：{}", message.toString());
 		weChatConnector.send(toUrl, context);
-		LOGGER.debug("查询红包记录>>>接收微信反馈表单：{}", (String) context.getOutput());
+		LOGGER.debug("查询红包记录>>>接收微信反馈表单：{}", (String) context.getOutput().toString());
 		RedPackResult result = XmlUtil.toBean((String)context.getOutput(), RedPackResult.class);
 		if(result.getReturnCode().equals("FAIL")){
 			LOGGER.error("查询红包记录>>>出错：code:{},msg：{}", result.getReturnCode(), result.getReturnMsg());
@@ -101,7 +101,7 @@ public class WeChatRedPackBeanImpl implements WeChatRedPackBean{
 		context.setInput(message);
 		LOGGER.debug("查询红包记录>>>转换微信表单：{}", message.toString());
 		weChatConnector.send(toUrl, context);
-		LOGGER.debug("查询红包记录>>>接收微信反馈表单：{}", (String) context.getOutput());
+		LOGGER.debug("查询红包记录>>>接收微信反馈表单：{}", (String) context.getOutput().toString());
 		RedPackInfoResult result = XmlUtil.toBean((String)context.getOutput(), RedPackInfoResult.class);
 		if(result.getReturnCode().equals("FAIL")){
 			LOGGER.error("查询红包记录>>>出错：code:{},msg：{}", result.getReturnCode(), result.getReturnMsg());

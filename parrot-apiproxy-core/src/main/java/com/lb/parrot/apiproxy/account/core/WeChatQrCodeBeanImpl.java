@@ -41,7 +41,7 @@ public class WeChatQrCodeBeanImpl implements WeChatQrCodeBean{
 		QrcodeCreateUrl toUrl = new QrcodeCreateUrl(accessToken);
 		WeChatContext context = new WeChatContextDefault();
 		weChatConnector.send(toUrl, context);
-		LOGGER.debug("帐号管理>>>接收微信反馈表单：{}", (String) context.getOutput());
+		LOGGER.debug("帐号管理>>>接收微信反馈表单：{}", (String) context.getOutput().toString());
 		ToServerResult toServerResult = ParserUtil.parse((String)context.getOutput(), ConvertMode.SEND);
 		if (toServerResult instanceof ErrorResult) {
 			ErrorResult err = (ErrorResult) toServerResult;

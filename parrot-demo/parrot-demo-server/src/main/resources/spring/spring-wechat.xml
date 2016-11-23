@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  
+    http://www.springframework.org/schema/beans/spring-beans.xsd   
+    http://www.springframework.org/schema/context   
+    http://www.springframework.org/schema/context/spring-context.xsd  
+    http://www.springframework.org/schema/aop 
+     http://www.springframework.org/schema/aop/spring-aop.xsd">
+	
+	<context:property-placeholder location="classpath:wechat.properties" ignore-unresolvable="true" />
+	
+	<context:component-scan base-package="com.lb.parrot" />
+	
+	<bean id="weChatClient" class="com.lb.parrot.support.WeChatClient" >
+		<property name="appid" value="${WECHAT.APPID}" />
+		<property name="secret" value="${WECHAT.APPSECRET}" />
+		<property name="token" value="${WECHAT.TOKEN}" />
+		<property name="mchId" value="${WECHAT.MCHID}" />
+		<property name="payToken" value="${WECHAT.PAYTOKEN}" />
+		<property name="encodeAseKey" value="${WECHAT.ENCODINGAESKEY}" />
+		<property name="checkSignature" value="true" />
+		<property name="certPath" value="${CERT.PATH}" />
+		<property name="password" value="${CERT.PASSWORD}" />
+	</bean>
+	
+</beans>

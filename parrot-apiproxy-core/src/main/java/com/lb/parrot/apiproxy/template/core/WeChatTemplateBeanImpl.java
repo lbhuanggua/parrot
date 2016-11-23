@@ -41,7 +41,7 @@ public class WeChatTemplateBeanImpl implements WeChatTemplateBean{
 		WeChatContext context = new WeChatContextDefault();
 		context.setInput(message);
 		weChatConnector.send(toUrl, context);
-		LOGGER.debug("模板消息>>>接收微信反馈表单：{}", (String) context.getOutput());
+		LOGGER.debug("模板消息>>>接收微信反馈表单：{}", (String) context.getOutput().toString());
 		SendTemplateResult result = JSON.parseObject((String) context.getOutput(), SendTemplateResult.class);
 		if (!result.getErrCode().equals("0")) {
 			LOGGER.error("模板消息>>>出错：code:{}, msg：{}", result.getErrCode(), result.getErrMsg());

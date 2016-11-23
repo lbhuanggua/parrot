@@ -62,7 +62,7 @@ public class WeChatPayOrderBeanImpl implements WeChatPayOrderBean{
 		context.setInput(message);
 		LOGGER.debug("统一下单>>>转换微信表单：{}", message.toString());
 		weChatConnector.send(toUrl, context);
-		LOGGER.debug("统一下单>>>接收微信反馈表单：{}", (String) context.getOutput());
+		LOGGER.debug("统一下单>>>接收微信反馈表单：{}", (String) context.getOutput().toString());
 		ToServerPayResult payResult = ParserUtil.parse((String)context.getOutput(), ConvertMode.SEND);
 		if(payResult instanceof UnifiedOrderResult){
 			UnifiedOrderResult result = (UnifiedOrderResult) payResult;
@@ -98,7 +98,7 @@ public class WeChatPayOrderBeanImpl implements WeChatPayOrderBean{
 		context.setInput(message);
 		LOGGER.debug("查询订单>>>转换微信表单：{}", message.toString());
 		weChatConnector.send(toUrl, context);
-		LOGGER.debug("查询订单>>>接收微信反馈表单：{}", (String) context.getOutput());
+		LOGGER.debug("查询订单>>>接收微信反馈表单：{}", (String) context.getOutput().toString());
 		ToServerPayResult payResult = ParserUtil.parse((String)context.getOutput(),  ConvertMode.SEND);
 		if(payResult instanceof PayBusinessAliasResult){
 			PayBusinessAliasResult result = (PayBusinessAliasResult) payResult;
@@ -124,7 +124,7 @@ public class WeChatPayOrderBeanImpl implements WeChatPayOrderBean{
 		context.setInput(message);
 		LOGGER.debug("关闭订单>>>转换微信表单：{}", message.toString());
 		weChatConnector.send(toUrl, context);
-		LOGGER.debug("关闭订单>>>接收微信反馈表单：{}", (String) context.getOutput());
+		LOGGER.debug("关闭订单>>>接收微信反馈表单：{}", (String) context.getOutput().toString());
 		ToServerPayResult payResult = ParserUtil.parse((String)context.getOutput(),  ConvertMode.SEND);
 		if (payResult instanceof PayFailResult) {
 			PayFailResult result = (PayFailResult) payResult;
@@ -154,7 +154,7 @@ public class WeChatPayOrderBeanImpl implements WeChatPayOrderBean{
 		context.setInput(message);
 		LOGGER.debug("下载对账单>>>转换微信表单：{}", message.toString());
 		weChatConnector.send(toUrl, context);
-		LOGGER.debug("下载对账单>>>接收微信反馈表单：{}", (String) context.getOutput());
+		LOGGER.debug("下载对账单>>>接收微信反馈表单：{}", (String) context.getOutput().toString());
 		ToServerPayResult result = ParserUtil.parse((String)context.getOutput(), ConvertMode.SEND);
 		if(result instanceof PayFailResult){
 			PayFailResult err = (PayFailResult) result;

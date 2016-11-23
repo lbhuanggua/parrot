@@ -47,7 +47,7 @@ public class WeChatPayRefundBeanImpl implements WeChatPayRefundBean{
 		context.setInput(message);
 		LOGGER.debug("申请退款>>>转换微信表单：{}", message.toString());
 		weChatConnector.send(toUrl, context);
-		LOGGER.debug("申请退款>>>接收微信反馈表单：{}", (String) context.getOutput());
+		LOGGER.debug("申请退款>>>接收微信反馈表单：{}", (String) context.getOutput().toString());
 		RefundResult result = XmlUtil.toBean((String)context.getOutput(), RefundResult.class);
 		if(result.getReturnCode().equals("FAIL")){
 			LOGGER.error("申请退款>>>出错：code:{},msg：{}", result.getReturnCode(), result.getReturnMsg());
@@ -73,7 +73,7 @@ public class WeChatPayRefundBeanImpl implements WeChatPayRefundBean{
 		context.setInput(message);
 		LOGGER.debug("查询退款>>>转换微信表单：{}", message.toString());
 		weChatConnector.send(toUrl, context);
-		LOGGER.debug("查询退款>>>接收微信反馈表单：{}", (String) context.getOutput());
+		LOGGER.debug("查询退款>>>接收微信反馈表单：{}", (String) context.getOutput().toString());
 		RefundQueryResult result = XmlUtil.toBean((String)context.getOutput(), RefundQueryResult.class);
 		if(result.getReturnCode().equals("FAIL")){
 			LOGGER.error("查询退款>>>出错：code:{},msg：{}", result.getReturnCode(), result.getReturnMsg());

@@ -78,7 +78,7 @@ public class WeChatUserBeanImpl implements WeChatUserBean{
 				GetUserInfoHtmlUrl getUserInfoUrl = new GetUserInfoHtmlUrl(oauth2Token.getAccessToken(), oauth2Token.getOpenId());
 				WeChatContext userInfoContext = new WeChatContextDefault();
 				weChatConnector.send(getUserInfoUrl, userInfoContext);
-				LOGGER.debug("用户管理：拉取用户信息  = {}", userInfoContext.getOutput());
+				LOGGER.debug("用户管理：拉取用户信息  = {}", userInfoContext.getOutput().toString());
 				result = JSON.parseObject((String)userInfoContext.getOutput(), UserInfoResult.class);
 				LOGGER.debug("用户管理：解析用户信息  = {}", result);
 				if(!StringUtil.isEmpty(oauth2Token.getErrCode())){
@@ -99,7 +99,7 @@ public class WeChatUserBeanImpl implements WeChatUserBean{
 		GetUserInfoUrl toUrl = new GetUserInfoUrl(accessToken, openId);
 		WeChatContext context = new WeChatContextDefault();
 		weChatConnector.send(toUrl, context);
-		LOGGER.debug("用户管理>>>接收微信反馈表单：{}", (String) context.getOutput());
+		LOGGER.debug("用户管理>>>接收微信反馈表单：{}", (String) context.getOutput().toString());
 		ToServerResult toServerResult = ParserUtil.parse((String)context.getOutput(), ConvertMode.SEND);
 		if (toServerResult instanceof ErrorResult) {
 			ErrorResult errorResult = (ErrorResult) toServerResult;

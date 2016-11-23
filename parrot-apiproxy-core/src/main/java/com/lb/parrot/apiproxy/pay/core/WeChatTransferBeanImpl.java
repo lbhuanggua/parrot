@@ -46,7 +46,7 @@ public class WeChatTransferBeanImpl implements WeChatTransferBean{
 		context.setInput(message);
 		LOGGER.debug("企业付款>>>转换微信表单：{}", message.toString());
 		weChatConnector.send(toUrl, context);
-		LOGGER.debug("企业付款>>>接收微信反馈表单：{}", (String) context.getOutput());
+		LOGGER.debug("企业付款>>>接收微信反馈表单：{}", (String) context.getOutput().toString());
 		TransferResult result = XmlUtil.toBean((String)context.getOutput(), TransferResult.class);
 		if(result.getReturnCode().equals("FAIL")){
 			LOGGER.error("企业付款>>>下单出错：code:{},msg：{}", result.getReturnCode(), result.getReturnMsg());
@@ -73,7 +73,7 @@ public class WeChatTransferBeanImpl implements WeChatTransferBean{
 		context.setInput(message);
 		LOGGER.debug("查询企业付款>>>转换微信表单：{}", message.toString());
 		weChatConnector.send(toUrl, context);
-		LOGGER.debug("查询企业付款>>>接收微信反馈表单：{}", (String) context.getOutput());
+		LOGGER.debug("查询企业付款>>>接收微信反馈表单：{}", (String) context.getOutput().toString());
 		GetTransferInfoResult result = XmlUtil.toBean((String)context.getOutput(), GetTransferInfoResult.class);
 		if(result.getReturnCode().equals("FAIL")){
 			LOGGER.error("查询企业付款>>>下单出错：code:{},msg：{}", result.getReturnCode(), result.getReturnMsg());
