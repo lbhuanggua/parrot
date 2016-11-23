@@ -292,7 +292,7 @@ public class WeChatConnectorDefault implements WeChatConnector {
 				GetUserInfoHtmlUrl getUserInfoUrl = new GetUserInfoHtmlUrl(oauth2Token.getAccessToken(),oauth2Token.getOpenId());
 				WeChatContext userInfoContext = new WeChatContextDefault();
 				this.send(getUserInfoUrl, userInfoContext);
-				LOGGER.debug("拉取用户信息  = {}", userInfoContext.getOutput());
+				LOGGER.debug("拉取用户信息  = {}", userInfoContext.getOutput().toString());
 				result = JSON.parseObject((String)userInfoContext.getOutput(), UserInfoResult.class);
 				LOGGER.debug("解析用户信息  = {}", result);
 				if(!StringUtil.isEmpty(oauth2Token.getErrCode())){
