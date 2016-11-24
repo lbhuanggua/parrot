@@ -15,22 +15,18 @@
 		<dependency>
 			<groupId>com.lb.parrot</groupId>
 			<artifactId>parrot-support</artifactId>
-			<version>${parrot.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.lb.parrot</groupId>
 			<artifactId>parrot-pay</artifactId>
-			<version>${parrot.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.lb.parrot</groupId>
 			<artifactId>parrot-apiproxy-api</artifactId>
-			<version>${parrot.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.lb.parrot</groupId>
 			<artifactId>parrot-apiproxy-core</artifactId>
-			<version>${parrot.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>

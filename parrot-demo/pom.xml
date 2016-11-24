@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>com.lb.parrot</groupId>
 		<artifactId>parrot</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
+		<version>${parrot.version}</version>
 	</parent>
 	<artifactId>parrot-demo</artifactId>
 	<packaging>pom</packaging>
@@ -14,7 +14,6 @@
 		<module>parrot-demo-client</module>
 	</modules>
 	<properties>
-		<parrot.version>0.0.1</parrot.version>
 		<motan.version>0.2.1</motan.version>
 		<spring.version>4.2.4.RELEASE</spring.version>
 	</properties>

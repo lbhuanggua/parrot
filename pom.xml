@@ -21,7 +21,7 @@
 	</modules>
 	
 	<properties>
-		<parrot.version>0.0.1</parrot.version>
+		<parrot.version>0.0.2-SNAPSHOT</parrot.version>
 	
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.build.resourceEncoding>UTF-8</project.build.resourceEncoding>
