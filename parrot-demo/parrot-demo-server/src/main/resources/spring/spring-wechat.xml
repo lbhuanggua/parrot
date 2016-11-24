@@ -13,16 +13,4 @@
 	
 	<context:component-scan base-package="com.lb.parrot" />
 	
-	<bean id="weChatClient" class="com.lb.parrot.support.WeChatClient" >
-		<property name="appid" value="${WECHAT.APPID}" />
-		<property name="secret" value="${WECHAT.APPSECRET}" />
-		<property name="token" value="${WECHAT.TOKEN}" />
-		<property name="mchId" value="${WECHAT.MCHID}" />
-		<property name="payToken" value="${WECHAT.PAYTOKEN}" />
-		<property name="encodeAseKey" value="${WECHAT.ENCODINGAESKEY}" />
-		<property name="checkSignature" value="true" />
-		<property name="certPath" value="${CERT.PATH}" />
-		<property name="password" value="${CERT.PASSWORD}" />
-	</bean>
-	
 </beans>

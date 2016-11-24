@@ -1,5 +1,6 @@
 package com.lb.parrot.support;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 /**
@@ -20,56 +21,57 @@ public class WeChatClient {
 	/**
 	 * 微信的appid
 	 */
-	String appid;
-
+	@Value("${parrot.wechat.appid}")
+	private String appid;
 	/**
 	 * 微信的app秘钥
 	 */
-	String secret;
-
+	@Value("${parrot.wechat.secret}")
+	private String secret;
 	/**
 	 * 认证的token字符串
 	 */
-	String token;
-
+	@Value("${parrot.wechat.token}")
+	private String token;
 	/**
 	 * 微信消息加密密钥
 	 */
-	String encodeAseKey;
-
+	@Value("${parrot.wechat.encodeAseKey}")
+	private String encodeAseKey;
 	/**
 	 * 商户号
 	 */
-	String mchId;
-
+	@Value("${parrot.wechat.mchId}")
+	private String mchId;
 	/**
 	 * 商户平台的key字符串
 	 */
-	String payToken;
-
+	@Value("${parrot.wechat.payToken}")
+	private String payToken;
 	/**
 	 * HTTP是否强制检查签名
 	 */
-	boolean checkSignature;
-
+	@Value("${parrot.wechat.checkSignature}")
+	private String checkSignature;
 	/**
 	 * 是否检查微信服务器ip
 	 */
-	boolean checkIp;
-
+	@Value("${parrot.wechat.checkIp}")
+	private String checkIp;
 	/**
 	 * 证书路径
 	 */
+	@Value("${parrot.wechat.certPath}")
 	private String certPath;
-
 	/**
 	 * 验证密码
 	 */
+	@Value("${parrot.wechat.password}")
 	private String password;
-
 	/**
 	 * 证书类型
 	 */
+	@Value("${parrot.wechat.certType}")
 	private String certType;
 
 	public String getToken() {
@@ -109,19 +111,19 @@ public class WeChatClient {
 	}
 
 	public boolean isCheckSignature() {
-		return checkSignature;
+		return Boolean.valueOf(checkSignature);
 	}
 
 	public void setCheckSignature(String checkSignature) {
-		this.checkSignature = Boolean.getBoolean(checkSignature);
+		this.checkSignature = checkSignature;
 	}
 
 	public boolean isCheckIp() {
-		return checkIp;
+		return Boolean.valueOf(checkIp);
 	}
 
 	public void setCheckIp(String checkIp) {
-		this.checkIp = Boolean.getBoolean(checkIp);
+		this.checkIp = checkIp;
 	}
 
 	public void setAppid(String appid) {
@@ -134,14 +136,6 @@ public class WeChatClient {
 
 	public void setMchId(String mchId) {
 		this.mchId = mchId;
-	}
-
-	public void setCheckSignature(boolean checkSignature) {
-		this.checkSignature = checkSignature;
-	}
-
-	public void setCheckIp(boolean checkIp) {
-		this.checkIp = checkIp;
 	}
 
 	public String getCertPath() {
