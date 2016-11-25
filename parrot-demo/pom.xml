@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>com.lb.parrot</groupId>
 		<artifactId>parrot</artifactId>
-		<version>${parrot.version}</version>
+		<version>0.0.2-SNAPSHOT</version>
 	</parent>
 	<artifactId>parrot-demo</artifactId>
 	<packaging>pom</packaging>
@@ -23,37 +23,37 @@
 			<dependency>
 				<groupId>com.lb.parrot</groupId>
 				<artifactId>parrot-support</artifactId>
-				<version>${parrot.version}</version>
+				<version>0.0.2-SNAPSHOT</version>
 			</dependency>
 			<dependency>
 				<groupId>com.lb.parrot</groupId>
 				<artifactId>parrot-pay</artifactId>
-				<version>${parrot.version}</version>
+				<version>0.0.2-SNAPSHOT</version>
 			</dependency>
 			<dependency>
 				<groupId>com.lb.parrot</groupId>
 				<artifactId>parrot-template</artifactId>
-				<version>${parrot.version}</version>
+				<version>0.0.2-SNAPSHOT</version>
 			</dependency>
 			<dependency>
 				<groupId>com.lb.parrot</groupId>
 				<artifactId>parrot-message</artifactId>
-				<version>${parrot.version}</version>
+				<version>0.0.2-SNAPSHOT</version>
 			</dependency>
 			<dependency>
 				<groupId>com.lb.parrot</groupId>
 				<artifactId>parrot-customer</artifactId>
-				<version>${parrot.version}</version>
+				<version>0.0.2-SNAPSHOT</version>
 			</dependency>
 			<dependency>
 				<groupId>com.lb.parrot</groupId>
 				<artifactId>parrot-apiproxy-api</artifactId>
-				<version>${parrot.version}</version>
+				<version>0.0.2-SNAPSHOT</version>
 			</dependency>
 			<dependency>
 				<groupId>com.lb.parrot</groupId>
 				<artifactId>parrot-apiproxy-core</artifactId>
-				<version>${parrot.version}</version>
+				<version>0.0.2-SNAPSHOT</version>
 			</dependency>
 			<dependency>
 				<groupId>org.springframework</groupId>

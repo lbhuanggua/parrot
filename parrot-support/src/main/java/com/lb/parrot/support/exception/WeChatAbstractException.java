@@ -68,7 +68,7 @@ public class WeChatAbstractException extends RuntimeException {
         if (this.errorMsg == null || "".equals(this.errorMsg)) {
             return super.getMessage();
         }
-		return "errorCode:" + this.errorCode == null ? "" : this.errorCode + ",errorMsg:" + this.errorMsg;
+        return "[" + this.errorCode + ":" + this.errorMsg + "]";
     }
 
 }

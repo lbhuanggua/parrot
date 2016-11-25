@@ -4,7 +4,7 @@
 
 	<groupId>com.lb.parrot</groupId>
 	<artifactId>parrot</artifactId>
-	<version>${parrot.version}</version>
+	<version>0.0.2-SNAPSHOT</version>
 	<packaging>pom</packaging>
     
 	<modules>
@@ -21,7 +21,6 @@
 	</modules>
 	
 	<properties>
-		<parrot.version>0.0.2-SNAPSHOT</parrot.version>
 	
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.build.resourceEncoding>UTF-8</project.build.resourceEncoding>

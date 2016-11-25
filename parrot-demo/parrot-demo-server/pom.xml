@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>com.lb.parrot</groupId>
 		<artifactId>parrot-demo</artifactId>
-		<version>${parrot.version}</version>
+		<version>0.0.2-SNAPSHOT</version>
 	</parent>
 	<artifactId>parrot-demo-server</artifactId>
 	<packaging>war</packaging>
