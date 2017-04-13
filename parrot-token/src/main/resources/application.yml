@@ -1,0 +1,16 @@
+## YAML Template.
+spring:
+    application:
+        name: parrot-token
+    profiles:
+    active:
+      - dev
+server:
+    port: 8001
+parrot:
+  wechat:
+    appid: wxcc97574a9928c248
+    secret: 688fa5e2756bcb06562790320f06304e
+logging:
+  path: /home/log/parrot-token/
+    
