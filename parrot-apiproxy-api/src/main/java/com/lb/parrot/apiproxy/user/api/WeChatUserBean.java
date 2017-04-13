@@ -14,9 +14,10 @@ public interface WeChatUserBean {
 	
 	/**
 	 * 根据ipenid获取用户信息
+	 * @param accessToken
 	 * @param openId
 	 * @return
 	 */
-	UserInfoResult getUserInfo(String openId) throws WeChatUserException;
+	UserInfoResult getUserInfo(String accessToken, String openId) throws WeChatUserException;
 	
 }
