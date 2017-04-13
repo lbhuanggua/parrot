@@ -1,0 +1,25 @@
+## YAML Template.
+spring:
+    application:
+        name: parrot-apiproxy-boot
+    profiles:
+    active:
+      - dev
+server:
+    port: 8002
+parrot:
+  wechat:
+    appid: wxcc97574a9928c248
+    secret: 688fa5e2756bcb06562790320f06304e
+    token: wacCJDQwo6rOMQ
+    encodeAseKey: tX1K8iMuDwDcRPmAHWTrQU3kJdmR0w4bjVdOlhzWWeR
+    mchId: 1274008201
+    payToken: 09209d250b4c0e247ec02edce69f632d
+    checkSignature: true
+    checkIp: true
+    certType: pkcs12
+    certPath: /root/cet/10016225.p12
+    password: 123456
+logging:
+  path: /home/log/parrot-apiproxy-boot/
+    
