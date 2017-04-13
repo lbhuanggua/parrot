@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.lb.parrot</groupId>
 	<artifactId>parrot</artifactId>
 	<version>0.0.2-SNAPSHOT</version>
 	<packaging>pom</packaging>
-    
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.5.2.RELEASE</version>
+	</parent>
+
 	<modules>
 		<module>parrot-support</module>
 		<module>parrot-customer</module>
@@ -17,91 +24,59 @@
 		<module>parrot-pay</module>
 		<module>parrot-apiproxy-api</module>
 		<module>parrot-apiproxy-core</module>
-		<module>parrot-demo</module>
+		<module>parrot-apiproxy-boot</module>
+		<module>parrot-token</module>
 	</modules>
-	
+
 	<properties>
-	
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.build.resourceEncoding>UTF-8</project.build.resourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		
-		<jdk-version>1.7</jdk-version>
-		<spring.version>4.2.4.RELEASE</spring.version>
-		<junit.version>3.8.1</junit.version>
+
+		<java.version>1.8</java.version>
 
 		<log4j.version>1.2.17</log4j.version>
 		<slf4j.version>1.7.21</slf4j.version>
-
-		<jackson-databind.version>2.1.4</jackson-databind.version>
 		<fastjson.version>1.2.8</fastjson.version>
-
 		<javax.servlet.version>2.5</javax.servlet.version>
-		<javax.servlet.jstl.version>1.2</javax.servlet.jstl.version>
 		<aspectjweaver.version>1.6.11</aspectjweaver.version>
 		<javax.servlet-api.version>3.1.0</javax.servlet-api.version>
-
-		<commons-lang3.version>3.1</commons-lang3.version>
 		<commons-io.version>2.4</commons-io.version>
-		<commons-codec.version>1.9</commons-codec.version>
 		<commons-fileupload.version>1.3.1</commons-fileupload.version>
-		<commons-beanutils.version>1.8.3</commons-beanutils.version>
-
-		<commons-codec.version>1.9</commons-codec.version>
 		<xstream.version>1.4.9</xstream.version>
-		<httpclient.version>4.5.1</httpclient.version>
-		
 	</properties>
 
 	<dependencies>
 		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>${junit.version}</version>
-			<scope>test</scope>
-		</dependency>
-		<!-- ################### Spring ################ -->
-		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
-			<version>${spring.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context-support</artifactId>
-			<version>${spring.version}</version>
 		</dependency>
-		<!-- ################### log ################ -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
-			<version>${slf4j.version}</version>
 		</dependency>
-		<!-- <dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-			<version>${slf4j.version}</version>
-		</dependency> -->
+		<!-- <dependency> <groupId>org.slf4j</groupId> <artifactId>slf4j-log4j12</artifactId> 
+			<version>${slf4j.version}</version> </dependency> -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>log4j-over-slf4j</artifactId>
-			<version>${slf4j.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
 			<version>${log4j.version}</version>
 		</dependency>
-		<!-- ################### json ################ -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
-			<version>${jackson-databind.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjweaver</artifactId>
-			<version>${aspectjweaver.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>commons-io</groupId>
@@ -121,7 +96,6 @@
 		<dependency>
 			<groupId>commons-codec</groupId>
 			<artifactId>commons-codec</artifactId>
-			<version>${commons-codec.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.thoughtworks.xstream</groupId>
@@ -131,12 +105,10 @@
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
-			<version>${httpclient.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpmime</artifactId>
-			<version>${httpclient.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>commons-fileupload</groupId>
@@ -146,7 +118,6 @@
 		<dependency>
 			<groupId>commons-beanutils</groupId>
 			<artifactId>commons-beanutils</artifactId>
-			<version>${commons-beanutils.version}</version>
 		</dependency>
 	</dependencies>
 	<build>
@@ -154,24 +125,23 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.3.2</version>
 				<configuration>
-					<source>${jdk-version}</source>
-					<target>${jdk-version}</target>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
 					<encoding>${project.build.sourceEncoding}</encoding>
 				</configuration>
 			</plugin>
 		</plugins>
 	</build>
 	<organization>
-		<name>zenwater</name>
-		<url>http://www.zenwater.cn</url>
+		<name>free</name>
+		<url>https://github.com/lbhuanggua</url>
 	</organization>
 	<developers>
 		<developer>
 			<name>Jack</name>
 			<email>lbhuanggua@sina.com</email>
-			<organization>zenwater</organization>
+			<organization>free</organization>
 		</developer>
 	</developers>
 	<licenses>
