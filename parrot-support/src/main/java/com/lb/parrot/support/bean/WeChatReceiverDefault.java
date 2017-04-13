@@ -55,9 +55,9 @@ public class WeChatReceiverDefault implements WeChatReceiver{
 			for (WeChatHandler handler : dealHandlers) {
 				LOGGER.debug("{}开始匹配消息", handler.getClass().getName());
 				if(handler.isMatch(context.getInput(),context)){
-					LOGGER.debug("未处理消息:{}", context.getInput());
+					//LOGGER.debug("未处理消息:{}", context.getInput());
 					handler.process(context.getInput(), context);
-					LOGGER.debug("已处理消息:{}", context.getInput());
+					//LOGGER.debug("已处理消息:{}", context.getInput());
 				}
 				LOGGER.debug("{}匹配消息结束", handler.getClass().getName());
 			}

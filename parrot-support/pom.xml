@@ -10,8 +10,4 @@
 	</parent>
 	<artifactId>parrot-support</artifactId>
 	<name>parrot-support</name>
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	</properties>
-
 </project>

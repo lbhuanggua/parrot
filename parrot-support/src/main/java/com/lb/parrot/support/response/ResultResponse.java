@@ -10,13 +10,13 @@ public class ResultResponse implements WeChatResponse {
 	/**
 	 * 返回结果
 	 */
-	private String result;
+	private Object result;
 
 	public ResultResponse() {
 		super();
 	}
 
-	public ResultResponse(boolean status, String result) {
+	public ResultResponse(boolean status, Object result) {
 		super();
 		this.status = status;
 		this.result = result;
@@ -30,11 +30,11 @@ public class ResultResponse implements WeChatResponse {
 		this.status = status;
 	}
 
-	public String getResult() {
+	public Object getResult() {
 		return result;
 	}
 
-	public void setResult(String result) {
+	public void setResult(Object result) {
 		this.result = result;
 	}
 

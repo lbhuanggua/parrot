@@ -100,7 +100,6 @@ public class WeChatSenderDefault implements WeChatSender{
 	public void upload(WeChatHttpUpload upload, WeChatContext context) throws WeChatSupportException {
 		context.setInput(upload);
 		beforeExecute(context);
-		//execute(upload.getWeChatKey(), context);
 		afterExecute(context);
 	}
 
@@ -123,6 +122,7 @@ public class WeChatSenderDefault implements WeChatSender{
 		try{
 			WeChatContext context = new WeChatContextDefault();
 			execute(ticket, context);
+			//LOGGER.debug("ticket = {}",context.getOutput());
 			return (JsApiTicket) ParserUtil.parse((String)context.getOutput(), ConvertMode.SEND);
 		}catch(Exception e){
 			//忽略转换异常
@@ -160,7 +160,4 @@ public class WeChatSenderDefault implements WeChatSender{
 		context.setOutput(result);
 	}
 	
-
-
-
 }

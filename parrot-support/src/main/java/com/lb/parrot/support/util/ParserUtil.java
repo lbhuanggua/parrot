@@ -29,7 +29,8 @@ public class ParserUtil {
 		jsonParser.addWeChatConvert(new OauthTokenResultConvert());
 		jsonParser.addWeChatConvert(new AccessTokenConvert());
 		jsonParser.addWeChatConvert(new JsApiTicketConvert());
-		jsonParser.addWeChatConvert(new ErrorResultConvert());
+		//TODO 与其他处理冲突问题
+		//jsonParser.addWeChatConvert(new ErrorResultConvert());
 		jsonParser.addWeChatConvert(new UserInfoConvert());
 	}
 	

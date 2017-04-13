@@ -1,8 +1,5 @@
 package com.lb.parrot.support;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
-
 /**
  * 
  * <p>
@@ -15,64 +12,80 @@ import org.springframework.stereotype.Service;
  * @author lbhuanggua
  * @date 2016年05月19日
  */
-@Service
 public class WeChatClient {
 
 	/**
 	 * 微信的appid
 	 */
-	@Value("${parrot.wechat.appid}")
 	private String appid;
 	/**
 	 * 微信的app秘钥
 	 */
-	@Value("${parrot.wechat.secret}")
 	private String secret;
 	/**
 	 * 认证的token字符串
 	 */
-	@Value("${parrot.wechat.token}")
 	private String token;
 	/**
 	 * 微信消息加密密钥
 	 */
-	@Value("${parrot.wechat.encodeAseKey}")
 	private String encodeAseKey;
 	/**
 	 * 商户号
 	 */
-	@Value("${parrot.wechat.mchId}")
 	private String mchId;
 	/**
 	 * 商户平台的key字符串
 	 */
-	@Value("${parrot.wechat.payToken}")
 	private String payToken;
 	/**
 	 * HTTP是否强制检查签名
 	 */
-	@Value("${parrot.wechat.checkSignature}")
 	private String checkSignature;
 	/**
 	 * 是否检查微信服务器ip
 	 */
-	@Value("${parrot.wechat.checkIp}")
 	private String checkIp;
 	/**
 	 * 证书路径
 	 */
-	@Value("${parrot.wechat.certPath}")
 	private String certPath;
 	/**
 	 * 验证密码
 	 */
-	@Value("${parrot.wechat.password}")
 	private String password;
 	/**
 	 * 证书类型
 	 */
-	@Value("${parrot.wechat.certType}")
 	private String certType;
+
+	public WeChatClient() {
+		super();
+	}
+
+	public WeChatClient(String appid, String secret) {
+		super();
+		this.appid = appid;
+		this.secret = secret;
+	}
+
+	public WeChatClient(String appid, String secret, String token,
+			String encodeAseKey, String mchId, String payToken,
+			String checkSignature, String checkIp, String certPath,
+			String password, String certType) {
+		super();
+		this.appid = appid;
+		this.secret = secret;
+		this.token = token;
+		this.encodeAseKey = encodeAseKey;
+		this.mchId = mchId;
+		this.payToken = payToken;
+		this.checkSignature = checkSignature;
+		this.checkIp = checkIp;
+		this.certPath = certPath;
+		this.password = password;
+		this.certType = certType;
+	}
 
 	public String getToken() {
 		return token;
