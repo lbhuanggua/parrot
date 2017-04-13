@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.alibaba.fastjson.JSON;
-import com.lb.parrot.apiproxy.support.api.WeChatAccessTokenBean;
 import com.lb.parrot.apiproxy.user.api.WeChatUserBean;
 import com.lb.parrot.support.WeChatClient;
 import com.lb.parrot.support.WeChatConnector;
@@ -37,9 +36,6 @@ public class WeChatUserBeanImpl implements WeChatUserBean{
 	
 	@Autowired
 	WeChatClient weChatClient;
-	
-	@Autowired
-	WeChatAccessTokenBean weChatAccessTokenBean;
 
 	@Override
 	public UserInfoResult getUserInfoHtml(String code)  throws WeChatUserException{
@@ -93,9 +89,8 @@ public class WeChatUserBeanImpl implements WeChatUserBean{
 	}
 
 	@Override
-	public UserInfoResult getUserInfo(String openId) throws WeChatUserException{
-		LOGGER.debug("用户管理>>>接收open_id：{}", openId);
-		String accessToken = weChatAccessTokenBean.getAccessToken().getAccessToken();
+	public UserInfoResult getUserInfo(String accessToken, String openId) throws WeChatUserException{
+		LOGGER.debug("用户管理>>>接收access_token:{}, open_id：{}", accessToken, openId);
 		GetUserInfoUrl toUrl = new GetUserInfoUrl(accessToken, openId);
 		WeChatContext context = new WeChatContextDefault();
 		weChatConnector.send(toUrl, context);
