@@ -104,9 +104,7 @@ public class ContextImpl extends BaseContextImpl implements Context,
 		return object;
 	}
 
-	/**
-	 * 改写get方法，使得可以从父环境中查找，同时，也可以从子环境中查找 先找自己，再找子，再找父
-	 */
+
 	@SuppressWarnings("unchecked")
 	public <T> T get(String name) {
 		Map<Context, String> nodeMap = new HashMap<Context, String>();
@@ -119,9 +117,6 @@ public class ContextImpl extends BaseContextImpl implements Context,
 	@SuppressWarnings("unchecked")
 	protected <T> T findNodeMap(String name, Context contextNode,
 			Map<Context, String> nodeMap) {
-
-		// 如果当前不存在，则查找父亲中有没有
-		// 如果已经存在，则返回之
 		if (contextNode.getItemMap().containsKey(name)) {
 			Object object = contextNode.getItemMap().get(name);
 			if (object == null) {
