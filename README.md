@@ -86,4 +86,5 @@
 ## 待实现功能
 ## 沟通交流
 请扫微信二维码
+<br >
 ![guozi](https://github.com/lbhuanggua/parrot/blob/master/wechat.jpg) 
