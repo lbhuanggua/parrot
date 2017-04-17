@@ -87,6 +87,6 @@
 ## 沟通交流
 + 请扫微信二维码:
 
-	<img src="wechat.png" width="200">
+	<img src="wechat.jpg" width="200">
 
 
