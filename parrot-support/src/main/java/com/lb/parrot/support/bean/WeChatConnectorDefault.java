@@ -10,7 +10,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.alibaba.fastjson.JSON;
 import com.lb.parrot.support.WeChatClient;
 import com.lb.parrot.support.WeChatConnector;
 import com.lb.parrot.support.WeChatContext;
@@ -19,20 +18,12 @@ import com.lb.parrot.support.WeChatReceiver;
 import com.lb.parrot.support.WeChatSender;
 import com.lb.parrot.support.common.FromServerMessage;
 import com.lb.parrot.support.common.ToServerUrl;
-import com.lb.parrot.support.common.WeChatErrMsg;
 import com.lb.parrot.support.convert.ConvertMode;
 import com.lb.parrot.support.exception.WeChatSupportException;
 import com.lb.parrot.support.result.AccessToken;
-import com.lb.parrot.support.result.ErrorResult;
 import com.lb.parrot.support.result.JsApiSignature;
 import com.lb.parrot.support.result.JsApiTicket;
-import com.lb.parrot.support.result.Oauth2Token;
-import com.lb.parrot.support.result.UserInfoResult;
-import com.lb.parrot.support.url.GetAuthOauth2TokenUrl;
-import com.lb.parrot.support.url.GetOauth2TokenUrl;
-import com.lb.parrot.support.url.GetRefreshOauth2TokenUrl;
 import com.lb.parrot.support.url.GetTicketUrl;
-import com.lb.parrot.support.url.GetUserInfoHtmlUrl;
 import com.lb.parrot.support.util.ParserUtil;
 import com.lb.parrot.support.util.SignatureUtil;
 import com.lb.parrot.support.util.StreamUtil;
@@ -254,58 +245,6 @@ public class WeChatConnectorDefault implements WeChatConnector {
 		return checktag;
 	}
 	
-	public UserInfoResult getUserInfo(HttpServletRequest request) throws WeChatSupportException{
-		UserInfoResult result = null;
-		try{
-			String code = request.getParameter("code");
-			String state = request.getParameter("state");
-			LOGGER.debug("接收微信推送参数，code = {}, state = {}" , code , state);
-			if(StringUtil.isEmpty(code)){
-				throw new WeChatSupportException("100", "参数code异常");
-			}
-			//第二步：通过code换取网页授权access_token
-			GetOauth2TokenUrl getOauth2TokenUrl = new GetOauth2TokenUrl(getWeChatClient().getAppid(), getWeChatClient().getSecret(), code);
-			WeChatContext oauth2TokenContext = new WeChatContextDefault();
-			this.send(getOauth2TokenUrl, oauth2TokenContext);
-			Oauth2Token oauth2Token = JSON.parseObject((String)oauth2TokenContext.getOutput(), Oauth2Token.class);
-			LOGGER.debug("通过code换取网页授权Oauth2Token = {}", oauth2Token.toString());
-			if(!StringUtil.isEmpty(oauth2Token.getErrCode())){
-				throw new WeChatSupportException(oauth2Token.getErrCode(), oauth2Token.getErrMsg());
-			}else {
-				//LOGGER.debug("网页授权access_token 校验前, openid={}, accessToken={}", oauth2Token.getOpenId(), oauth2Token.getAccessToken());
-				//附：检验授权凭证（access_token）是否有效
-				GetAuthOauth2TokenUrl getAuthOauth2TokenUrl = new GetAuthOauth2TokenUrl(oauth2Token.getAccessToken(), oauth2Token.getOpenId());
-				WeChatContext authOauth2TokenContext = new WeChatContextDefault();
-				this.send(getAuthOauth2TokenUrl, authOauth2TokenContext);
-				ErrorResult errorResult = JSON.parseObject((String)authOauth2TokenContext.getOutput(), ErrorResult.class);
-				LOGGER.debug("检验授权凭证（access_token）是否有效,errcode={}, errmsg={}", errorResult.getErrCode(), errorResult.getErrMsg());
-				//第三步：刷新access_token（如果需要）
-				if(!errorResult.getErrCode().equalsIgnoreCase("0")){
-					GetRefreshOauth2TokenUrl getRefreshOauth2TokenUrl = new GetRefreshOauth2TokenUrl(getWeChatClient().getAppid(), oauth2Token.getRefreshToken());
-					WeChatContext refreshOauth2Token = new WeChatContextDefault();
-					this.send(getRefreshOauth2TokenUrl, refreshOauth2Token);
-					oauth2Token = JSON.parseObject((String)refreshOauth2Token.getOutput(), Oauth2Token.class);
-					LOGGER.debug("刷新Oauth2Token = {}", oauth2Token.toString());
-				}
-				//LOGGER.debug("网页授权access_token 校验后, openid={},accessToken={}", oauth2Token.getOpenId(), oauth2Token.getAccessToken());
-				//第四步：拉取用户信息(需scope为 snsapi_userinfo)
-				GetUserInfoHtmlUrl getUserInfoUrl = new GetUserInfoHtmlUrl(oauth2Token.getAccessToken(),oauth2Token.getOpenId());
-				WeChatContext userInfoContext = new WeChatContextDefault();
-				this.send(getUserInfoUrl, userInfoContext);
-				LOGGER.debug("拉取用户信息  = {}", userInfoContext.getOutput().toString());
-				result = JSON.parseObject((String)userInfoContext.getOutput(), UserInfoResult.class);
-				LOGGER.debug("解析用户信息  = {}", result);
-				if(!StringUtil.isEmpty(oauth2Token.getErrCode())){
-					throw new WeChatSupportException(oauth2Token.getErrCode(), oauth2Token.getErrMsg());
-				}
-			}
-		}catch(WeChatSupportException e){
-			LOGGER.error("errcode={}, errmsg={}, errmsgzh_CN={}", e.getErrorCode(), e.getMessage(), WeChatErrMsg.getErrmsgCN(Integer.parseInt(e.getErrorCode())), e);
-			throw e;
-		}
-		return result;
-	}
-
 	public JsApiSignature getJsApiSignature(String appId, String url) throws WeChatSupportException {
 		JsApiTicket jsApiTicket = this.getJsApiTicket();
 		long timestamp = System.currentTimeMillis() / 1000;

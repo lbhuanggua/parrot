@@ -38,13 +38,11 @@ public class WeChatUserBeanImpl implements WeChatUserBean{
 	WeChatClient weChatClient;
 
 	@Override
-	public UserInfoResult getUserInfoHtml(String code)  throws WeChatUserException{
+	public UserInfoResult getUserInfo(String code)  throws WeChatUserException{
 		//TODO 此接口内部实现需优化
 		LOGGER.debug("用户管理：接收微信推送参数，code = {}", code);
 		UserInfoResult result = null;
 		try {
-			if (StringUtil.isEmpty(code))
-				throw new WeChatUserException("code is null");
 			//第二步：通过code换取网页授权access_token
 			GetOauth2TokenUrl getOauth2TokenUrl = new GetOauth2TokenUrl(weChatClient.getAppid(), weChatClient.getSecret(), code);
 			WeChatContext oauth2TokenContext = new WeChatContextDefault();
@@ -89,7 +87,7 @@ public class WeChatUserBeanImpl implements WeChatUserBean{
 	}
 
 	@Override
-	public UserInfoResult getUserInfo(String accessToken, String openId) throws WeChatUserException{
+	public UserInfoResult getUser(String accessToken, String openId) throws WeChatUserException{
 		LOGGER.debug("用户管理>>>接收access_token:{}, open_id：{}", accessToken, openId);
 		GetUserInfoUrl toUrl = new GetUserInfoUrl(accessToken, openId);
 		WeChatContext context = new WeChatContextDefault();
@@ -102,6 +100,27 @@ public class WeChatUserBeanImpl implements WeChatUserBean{
 			throw new WeChatUserException(errorResult.getErrCode(), errorResult.getErrMsg());
 		}
 		return (UserInfoResult) toServerResult;
+	}
+
+	@Override
+	public Oauth2Token getOauth2Token(String code) throws WeChatUserException {
+		LOGGER.debug("用户管理：接收微信推送参数，code = {}", code);
+		Oauth2Token oauth2Token = null;
+		try {
+			//第二步：通过code换取网页授权access_token
+			GetOauth2TokenUrl getOauth2TokenUrl = new GetOauth2TokenUrl(weChatClient.getAppid(), weChatClient.getSecret(), code);
+			WeChatContext oauth2TokenContext = new WeChatContextDefault();
+			weChatConnector.send(getOauth2TokenUrl, oauth2TokenContext);
+			oauth2Token = JSON.parseObject((String) oauth2TokenContext.getOutput(), Oauth2Token.class);
+			LOGGER.debug("用户管理：通过code换取网页授权Oauth2Token = {}", oauth2Token.toString());
+			if(!StringUtil.isEmpty(oauth2Token.getErrCode())){
+				throw new WeChatUserException(oauth2Token.getErrCode(), oauth2Token.getErrMsg());
+			}
+		}catch(WeChatUserException e){
+			LOGGER.error("errcode={}, errmsg={}, errmsgzh_CN={}", e.getErrorCode(), e.getMessage(), WeChatErrMsg.getErrmsgCN(Integer.parseInt(e.getErrorCode())), e);
+			throw e;
+		}
+		return oauth2Token;
 	}
 	
 }

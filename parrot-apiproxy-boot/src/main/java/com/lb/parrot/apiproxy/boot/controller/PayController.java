@@ -1,7 +1,5 @@
 package com.lb.parrot.apiproxy.boot.controller;
 
-import java.io.InputStream;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -46,12 +44,8 @@ public class PayController {
 	}
 	
 	@RequestMapping(value = "/notity", method = { RequestMethod.POST })
-	public PayNotifyBusiness notity(@RequestBody(required = true) Object in) {
-		if(in instanceof InputStream) {
-			return weChatPayNotifyBean.readNotifyStreamAndCheckSign((InputStream)in);
-		} else {
-			return weChatPayNotifyBean.readNotifyStreamAndCheckSign((String)in);
-		}
+	public PayNotifyBusiness notity(@RequestBody(required = true) String in) {
+		return weChatPayNotifyBean.readNotifyStreamAndCheckSign((String)in);
 	}
 	
 	

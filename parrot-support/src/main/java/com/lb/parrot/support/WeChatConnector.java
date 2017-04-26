@@ -8,7 +8,6 @@ import com.lb.parrot.support.exception.WeChatSupportException;
 import com.lb.parrot.support.result.AccessToken;
 import com.lb.parrot.support.result.JsApiSignature;
 import com.lb.parrot.support.result.JsApiTicket;
-import com.lb.parrot.support.result.UserInfoResult;
 
 /**
  * 
@@ -69,12 +68,5 @@ public interface WeChatConnector {
 	 * @param response
 	 */
 	void receive(HttpServletRequest request, HttpServletResponse response) throws WeChatSupportException;
-	/**
-	 * 通过网页获取微信用户信息
-	 * @param request
-	 * @return
-	 * @throws WeChatSupportException
-	 */
-	UserInfoResult getUserInfo(HttpServletRequest request) throws WeChatSupportException;
 	
 }
