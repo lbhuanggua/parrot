@@ -29,7 +29,7 @@ public class IndexController {
 		return weChatConnector.getJsApiTicket();
 	}
 
-	@RequestMapping(value = "/js_signature", method = { RequestMethod.GET})
+	@RequestMapping(value = "/js_signature", method = { RequestMethod.GET, RequestMethod.POST})
 	public JsApiSignature getJsSignature(@RequestParam(value = "url", required = true) String url){
 		return weChatConnector.getJsApiSignature(weChatClient.getAppid(), url);
 	}

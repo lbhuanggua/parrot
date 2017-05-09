@@ -14,6 +14,7 @@ import com.lb.parrot.support.bean.WeChatContextDefault;
 import com.lb.parrot.support.common.ToServerResult;
 import com.lb.parrot.support.common.WeChatErrMsg;
 import com.lb.parrot.support.convert.ConvertMode;
+import com.lb.parrot.support.exception.WeChatSupportException;
 import com.lb.parrot.support.exception.WeChatUserException;
 import com.lb.parrot.support.result.ErrorResult;
 import com.lb.parrot.support.result.Oauth2Token;
@@ -79,7 +80,12 @@ public class WeChatUserBeanImpl implements WeChatUserBean{
 					throw new WeChatUserException(oauth2Token.getErrCode(), oauth2Token.getErrMsg());
 				}
 			}
-		}catch(WeChatUserException e){
+		}
+		catch(WeChatSupportException e){
+			LOGGER.error("errcode={}, errmsg={}, errmsgzh_CN={}", e.getErrorCode(), e.getMessage(), WeChatErrMsg.getErrmsgCN(Integer.parseInt(e.getErrorCode())), e);
+			throw e;
+		}
+		catch(WeChatUserException e){
 			LOGGER.error("errcode={}, errmsg={}, errmsgzh_CN={}", e.getErrorCode(), e.getMessage(), WeChatErrMsg.getErrmsgCN(Integer.parseInt(e.getErrorCode())), e);
 			throw e;
 		}
@@ -116,7 +122,12 @@ public class WeChatUserBeanImpl implements WeChatUserBean{
 			if(!StringUtil.isEmpty(oauth2Token.getErrCode())){
 				throw new WeChatUserException(oauth2Token.getErrCode(), oauth2Token.getErrMsg());
 			}
-		}catch(WeChatUserException e){
+		}
+		catch(WeChatSupportException e){
+			LOGGER.error("errcode={}, errmsg={}, errmsgzh_CN={}", e.getErrorCode(), e.getMessage(), WeChatErrMsg.getErrmsgCN(Integer.parseInt(e.getErrorCode())), e);
+			throw e;
+		}
+		catch(WeChatUserException e){
 			LOGGER.error("errcode={}, errmsg={}, errmsgzh_CN={}", e.getErrorCode(), e.getMessage(), WeChatErrMsg.getErrmsgCN(Integer.parseInt(e.getErrorCode())), e);
 			throw e;
 		}

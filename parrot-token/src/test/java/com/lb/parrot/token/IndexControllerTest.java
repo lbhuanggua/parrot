@@ -40,8 +40,8 @@ public class IndexControllerTest {
 	@Test
 	public void getJsSignature() throws Exception {
 		mvc.perform(
-				MockMvcRequestBuilders.get("/js_signature")
-						.param("url", "www.baidu.com")
+				MockMvcRequestBuilders.get("/js_signature/")
+				.param("url", "www.baidu.com")
 						.accept(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk())
 				.andDo(MockMvcResultHandlers.print());

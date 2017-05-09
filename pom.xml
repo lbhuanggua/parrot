@@ -133,6 +133,27 @@
 			</plugin>
 		</plugins>
 	</build>
+	
+	<!-- 资源库 -->
+	<repositories>
+		<repository>
+			<id>nexus-public</id>
+			<url>http://nexus.netpat.cn/nexus/content/groups/public/</url>
+		</repository>
+	</repositories>
+
+	<!--项目分发信息，在执行mvn deploy后表示要发布的位置。有了这些信息就可以把网站部署到远程服务器或者把构件部署到远程仓库。 -->
+	<distributionManagement>
+		<repository>
+			<id>nexus-releases</id>
+			<url>http://nexus.netpat.cn/nexus/content/repositories/releases</url>
+		</repository>
+		<snapshotRepository>
+			<id>nexus-snapshots</id>
+			<url>http://nexus.netpat.cn/nexus/content/repositories/snapshots</url>
+		</snapshotRepository>
+	</distributionManagement>
+	
 	<organization>
 		<name>free</name>
 		<url>https://github.com/lbhuanggua</url>
