@@ -4,6 +4,7 @@ import com.alibaba.fastjson.annotation.JSONField;
 import com.lb.parrot.support.common.ToServerResult;
 
 public class IndustryResult implements ToServerResult{
+	
 	private static final long serialVersionUID = 1L;
 	/**
 	 * 帐号设置的主营行业

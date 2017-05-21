@@ -3,7 +3,7 @@ package com.lb.parrot.template.result;
 import com.alibaba.fastjson.annotation.JSONField;
 import com.lb.parrot.support.common.ToServerResult;
 
-public class ApiAddTemplateResult implements ToServerResult{
+public class ApiAddTemplateResult implements ToServerResult {
 	private static final long serialVersionUID = 1L;
 	@JSONField(name = "errcode")
 	private String errCode;

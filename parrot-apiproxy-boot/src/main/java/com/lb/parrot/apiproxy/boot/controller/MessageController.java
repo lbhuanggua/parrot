@@ -14,9 +14,10 @@ import com.lb.parrot.template.result.SendTemplateResult;
 @RestController
 @RequestMapping(value = "/message")
 public class MessageController {
-	
-	@Autowired WeChatTemplateBean weChatTemplateBean;
-	
+
+	@Autowired
+	WeChatTemplateBean weChatTemplateBean;
+
 	@RequestMapping(value = "/template/send/{access_token}", method = { RequestMethod.POST })
 	public SendTemplateResult send(
 			@PathVariable(name = "access_token", required = true) String accessToken,
@@ -24,5 +25,4 @@ public class MessageController {
 		return weChatTemplateBean.send(accessToken, message);
 	}
 
-    
 }

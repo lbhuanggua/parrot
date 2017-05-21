@@ -15,7 +15,10 @@ public class TemplateDataTheme implements Serializable{
 	@JSONField(name = "color")
 	private String color;
 	
-
+	public TemplateDataTheme() {
+		super();
+	}
+	
 	public TemplateDataTheme(String value, String color) {
 		super();
 		this.value = value;
